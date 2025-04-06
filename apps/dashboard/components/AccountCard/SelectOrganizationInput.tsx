@@ -38,7 +38,7 @@ const RenderOrgOption = (props: RenderOrgOptionProps) => {
       <Avatar size="sm" src={props.avatarUrl}>
         <CorporateFareRoundedIcon />
       </Avatar>
-      <Typography className="truncate">{props.name} </Typography>
+      <Typography className="truncate">{props.name}</Typography>
       {planLabel && (
         <Chip size="sm" variant="outlined" color="warning" sx={{ ml: 'auto' }}>
           {planLabel}
@@ -50,9 +50,9 @@ const RenderOrgOption = (props: RenderOrgOptionProps) => {
 
 function SelectOrganizationInput({}: Props) {
   const session = useSession();
-
   const [isUpdatingSession, setIsUpdatingSession] = React.useState(false);
 
+  // Tipamos la respuesta de getOrganizations
   const getOrgsQuery = useSWR<
     Awaited<ReturnType<typeof getOrganizations>>
   >('/api/organizations', fetcher);
@@ -61,11 +61,7 @@ function SelectOrganizationInput({}: Props) {
     async (id: string) => {
       try {
         setIsUpdatingSession(true);
-
-        await session.update({
-          orgId: id,
-        });
-
+        await session.update({ orgId: id });
         window.location.reload();
       } catch (err) {
         console.log(err);
@@ -81,11 +77,13 @@ function SelectOrganizationInput({}: Props) {
       <Select
         disabled={isUpdatingSession}
         value={session?.data?.organization?.id}
-        placeholder={'Select a Team'}
+        placeholder="Select a Team"
         endDecorator={isUpdatingSession ? <CircularProgress size="sm" /> : null}
         renderValue={(option) => {
+          // Tipamos 'one' para evitar el error "implicitly has an 'any' type"
           const org = getOrgsQuery?.data?.find(
-            (one) => one.id === option?.value
+            (one: Awaited<ReturnType<typeof getOrganizations>>[number]) =>
+              one.id === option?.value
           );
 
           return (
@@ -104,10 +102,10 @@ function SelectOrganizationInput({}: Props) {
           <Option key={org.id} value={org.id}>
             <RenderOrgOption
               rootSxProps={{ maxWidth: '250px' }}
-              name={org?.name!}
-              plan={org?.subscriptions?.[0]?.plan!}
+              name={org.name}
+              plan={org.subscriptions?.[0]?.plan}
               avatarUrl={
-                org?.iconUrl ? `${org?.iconUrl}?timestamp=${Date.now()}` : ''
+                org.iconUrl ? `${org.iconUrl}?timestamp=${Date.now()}` : ''
               }
             />
           </Option>
