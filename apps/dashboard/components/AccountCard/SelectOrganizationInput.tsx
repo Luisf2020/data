@@ -80,7 +80,6 @@ function SelectOrganizationInput({}: Props) {
         placeholder="Select a Team"
         endDecorator={isUpdatingSession ? <CircularProgress size="sm" /> : null}
         renderValue={(option) => {
-          // Tipamos 'one' para evitar el error "implicitly has an 'any' type"
           const org = getOrgsQuery?.data?.find(
             (one: Awaited<ReturnType<typeof getOrganizations>>[number]) =>
               one.id === option?.value
@@ -89,30 +88,34 @@ function SelectOrganizationInput({}: Props) {
           return (
             <RenderOrgOption
               name={org?.name!}
-              plan={org?.subscriptions?.[0]?.plan!}
+              plan={org?.subscriptions?.[0]?.plan}
               avatarUrl={
-                org?.iconUrl ? `${org?.iconUrl}?timestamp=${Date.now()}` : ''
+                org?.iconUrl ? `${org.iconUrl}?timestamp=${Date.now()}` : ''
               }
             />
           );
         }}
         onChange={(_, value) => handleSwitchOrg(value as string)}
       >
-        {getOrgsQuery?.data?.map((org) => (
-          <Option key={org.id} value={org.id}>
-            <RenderOrgOption
-              rootSxProps={{ maxWidth: '250px' }}
-              name={org.name}
-              plan={org.subscriptions?.[0]?.plan}
-              avatarUrl={
-                org.iconUrl ? `${org.iconUrl}?timestamp=${Date.now()}` : ''
-              }
-            />
-          </Option>
-        ))}
+        {getOrgsQuery?.data?.map(
+          (org: Awaited<ReturnType<typeof getOrganizations>>[number]) => (
+            <Option key={org.id} value={org.id}>
+              <RenderOrgOption
+                rootSxProps={{ maxWidth: '250px' }}
+                name={org.name}
+                plan={org.subscriptions?.[0]?.plan}
+                avatarUrl={
+                  org.iconUrl ? `${org.iconUrl}?timestamp=${Date.now()}` : ''
+                }
+              />
+            </Option>
+          )
+        )}
       </Select>
     </FormControl>
   );
 }
 
 export default SelectOrganizationInput;
+
+
