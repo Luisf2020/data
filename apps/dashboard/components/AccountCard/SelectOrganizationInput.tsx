@@ -16,7 +16,8 @@ import { getOrganizations } from '@app/pages/api/organizations';
 
 import accountConfig from '@chaindesk/lib/account-config';
 import { fetcher } from '@chaindesk/lib/swr-fetcher';
-import { Prisma, SubscriptionPlan } from '@chaindesk/prisma';
+import { SubscriptionPlan } from '@chaindesk/prisma';
+
 type Props = {};
 
 type RenderOrgOptionProps = {
@@ -51,8 +52,9 @@ function SelectOrganizationInput({}: Props) {
   const session = useSession();
 
   const [isUpdatingSession, setIsUpdatingSession] = React.useState(false);
+
   const getOrgsQuery = useSWR<
-    Prisma.PromiseReturnType<typeof getOrganizations>
+    Awaited<ReturnType<typeof getOrganizations>>
   >('/api/organizations', fetcher);
 
   const handleSwitchOrg = React.useCallback(
