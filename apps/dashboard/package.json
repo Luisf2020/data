@@ -7,7 +7,7 @@
     "dev": "concurrently \"pnpm _dev\" \"pnpm worker:datasource-loader\" \"pnpm worker:buffer\"",
     "worker:buffer": "npm run dotenv -- tsx -- --watch workers/buffer-worker.ts | pino-pretty --colorize",
     "dev:all:test": "NODE_ENV=test APP_ENV=test concurrently \"pnpm dev -p 3042\" \"pnpm worker:datasource-loader\"",
-    "build": "npm run dotenv -- next build",
+    "build": "cd ../../packages/prisma && npx prisma generate && cd - && npm run dotenv -- next build",
     "tunnel": "npm run dotenv -- pnpx localtunnel -- --port 3000 --subdomain $USER-chaindesk",
     "start": "npm run dotenv -- next start",
     "typecheck": "npm run dotenv -- tsc --noemit",
@@ -32,6 +32,8 @@
     "@app/hooks": "./hooks",
     "buffer": false,
     "process": false
+
+
   },
   "dependencies": {
     "@azure/identity": "^4.4.1",
