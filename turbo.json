@@ -1,0 +1,41 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "prisma:generate": {
+      "cache": false
+    },
+    "prisma:push": {
+      "cache": false
+    },
+    "build": {
+      "dependsOn": ["^build", "@chaindesk/prisma#prisma:generate"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+    },
+    "dev": {
+      "dependsOn": [
+        "^dev",
+        "@chaindesk/prisma#prisma:generate",
+        "@chaindesk/prisma#prisma:push"
+      ],
+      "cache": false
+    },
+    "lint": {},
+    "typecheck": {},
+    "sendDailyLeads": {
+      "dependsOn": ["@chaindesk/prisma#prisma:generate"],
+      "cache": false
+    },
+    "syncDatasources": {
+      "dependsOn": ["@chaindesk/prisma#prisma:generate"],
+      "cache": false
+    },
+    "sendWeeklyAdminStats": {
+      "dependsOn": ["@chaindesk/prisma#prisma:generate"],
+      "cache": false
+    },
+    "sendAccountCleaningWarning": {
+      "dependsOn": ["@chaindesk/prisma#prisma:generate"],
+      "cache": false
+    }
+  }
+}

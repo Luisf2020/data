@@ -1,0 +1,103 @@
+version: '3'
+
+services:
+  maildev:
+    image: maildev/maildev
+    ports:
+      - '1080:1080'
+      - '1025:1025'
+
+  qdrant:
+    image: qdrant/qdrant
+    ports:
+      - '6333:6333'
+
+  pgdb:
+    image: postgres
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgdb-data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - '80:80'
+
+  redis:
+    image: redis
+    volumes:
+      - redis-data:/data
+    ports:
+      - '6379:6379'
+
+  redis-ui:
+    image: rediscommander/redis-commander
+    environment:
+      REDIS_HOSTS: 'local:redis:6379'
+    ports:
+      - '8081:8081'
+
+  minio:
+    image: minio/minio
+    environment:
+      MINIO_ACCESS_KEY: root
+      MINIO_SECRET_KEY: password
+    command: server /data
+    volumes:
+      - minio-data:/data
+    ports:
+      - '9000:9000'
+
+  init_bucket:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      sleep 10;
+      /usr/bin/mc config host add minio http://minio:9000 root password;
+      /usr/bin/mc mb minio/chatsappai;
+      /usr/bin/mc anonymous set public minio/chatsappai;
+      exit 0;
+      "
+
+  chatsappai_dashboard:
+    build:
+      context: ../
+      args:
+        - SCOPE=dashboard
+    depends_on:
+      - pgdb
+    ports:
+      - '3000:3000'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    env_file: ../.env.local
+
+  chatsappai_datasource_loader:
+    build:
+      context: ../
+      args:
+        - SCOPE=dashboard
+    depends_on:
+      - chatsappai_dashboard
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    env_file: ../.env.local
+    entrypoint: >
+      /bin/sh -c "
+      node apps/dashboard/.next/server/datasource-loader.js
+      "
+
+volumes:
+  pgdb-data:
+  redis-data:
+  minio-data:

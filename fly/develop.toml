@@ -1,0 +1,44 @@
+app = 'chatsappai-develop'
+primary_region = 'ams'
+kill_signal = 'SIGINT'
+kill_timeout = '5s'
+
+[processes]
+  web = 'node apps/dashboard/server.js'
+  worker = 'node --max-old-space-size=1536 apps/dashboard/.next/server/datasource-loader.js'
+  buffer = "node --max-old-space-size=1536 apps/dashboard/.next/server/buffer-worker.js"
+
+[build]
+  [build.args]
+    NEXT_PUBLIC_S3_BUCKET_NAME = "chatsappai-data"
+    NEXT_PUBLIC_AWS_ENDPOINT = "https://s3.ap-southeast-2.amazonaws.com/${NEXT_PUBLIC_S3_BUCKET_NAME}"
+    NEXT_PUBLIC_DASHBOARD_URL = "https://development.chatsappai.com"
+    NEXT_PUBLIC_SLACK_CLIENT_ID="7908560937845.7951892568948"
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_51NB0tjBZx6RIyNe17nPIP8G0lresUvYqF46RzRd8AZVz6lz11X5WAnTPz2VsdZb1CmdxhXcyDo3G4gvsMvfTgqBE00PlMw7XUx"
+    NEXT_PUBLIC_STRIPE_PRICING_TABLE_ID="prctbl_1PbuZIBZx6RIyNe11OZyJghK"
+    NEXT_PUBLIC_INTERCOM="a39n9c4m"
+    NEXT_PUBLIC_WHATSAPP_CLIENT_CONFIG_ID="1129295041989408"
+    NEXT_PUBLIC_FACEBOOK_CLIENT_ID="179307135132018"
+    NEXT_PUBLIC_FACEBOOK_CLIENT_CONFIG_ID="1541037313965077"
+    NEXT_PUBLIC_MERCADOLIBRE_BASE_URL="https://dashboard.chatsappai.com/"
+    NEXT_PUBLIC_MERCADOLIBRE_CLIENT_ID="7640254226074401"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  processes = ['web']
+
+  [http_service.concurrency]
+    type = 'connections'
+    hard_limit = 550
+    soft_limit = 500
+
+# Worker process configuration - removed HTTP service section
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+  min_machines_running = 6
+  processes = ['worker']

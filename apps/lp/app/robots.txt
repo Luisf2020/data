@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Sitemap: https://www.chatsappai.com/sitemap.xml
+Sitemap: https://www.chatsappai.com/api/sitemaps/tools/youtube-summarizer.xml
+Sitemap: https://www.chatsappai.com/api/sitemaps/tools/ai-news.xml

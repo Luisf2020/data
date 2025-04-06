@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: prisma-migrate
+spec:
+  template:
+    spec:
+      containers:
+        - name: prisma
+          image: chatsappaicontainer.azurecr.io/chatsappai_data:latest
+          command:
+            ['sh', '-c', 'cd /app/packages/prisma && npx prisma migrate deploy']
+          env:
+            - name: DATABASE_URL
+              value: 'postgresql://admin:password@pgdb:5432/databerry'
+      restartPolicy: OnFailure

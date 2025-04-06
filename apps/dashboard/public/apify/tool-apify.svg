@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>empty-state_actor</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="50%" x2="10.0074405%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#EAECEE" offset="0%"></stop>
+            <stop stop-color="#92979A" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="33.4191999%" y1="75.3012976%" x2="66.8673843%" y2="29.8083606%" id="linearGradient-2">
+            <stop stop-color="#E8EBEC" offset="0%"></stop>
+            <stop stop-color="#878C90" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="33.4190025%" y1="75.3012976%" x2="67.0138889%" y2="29.609375%" id="linearGradient-3">
+            <stop stop-color="#8B9296" offset="0%"></stop>
+            <stop stop-color="#E9ECED" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="50%" x2="10.0074405%" y2="50%" id="linearGradient-4">
+            <stop stop-color="#EAECEE" offset="0%"></stop>
+            <stop stop-color="#92979A" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="33.4190025%" y1="75.3012976%" x2="66.8675851%" y2="29.8083606%" id="linearGradient-5">
+            <stop stop-color="#E8EBEC" offset="0%"></stop>
+            <stop stop-color="#878C90" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="50%" x2="10.0074405%" y2="50%" id="linearGradient-6">
+            <stop stop-color="#EAECEE" offset="0%"></stop>
+            <stop stop-color="#92979A" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="50%" x2="10.0074405%" y2="50%" id="linearGradient-7">
+            <stop stop-color="#EAECEE" offset="0%"></stop>
+            <stop stop-color="#B0B5B9" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="33.4190025%" y1="75.3012976%" x2="67.0138889%" y2="29.609375%" id="linearGradient-8">
+            <stop stop-color="#E8EBEC" offset="0%"></stop>
+            <stop stop-color="#B0B5B9" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="33.4190025%" y1="75.3012976%" x2="67.0138889%" y2="29.609375%" id="linearGradient-9">
+            <stop stop-color="#B0B5B9" offset="0%"></stop>
+            <stop stop-color="#E9ECED" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="empty-state_actor">
+            <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="96" height="96"></rect>
+            <g id="Group-13" transform="translate(19.000000, 19.000000)">
+                <polygon id="Fill-1" fill="url(#linearGradient-1)" opacity="0.3" points="0 32.8653789 14.3786033 41.0817236 28.7572065 32.8653789 14.3786033 24.6490342"></polygon>
+                <polygon id="Fill-2" fill="url(#linearGradient-2)" opacity="0.3" points="14.3786289 41.0817493 14.3786289 57.5144388 28.7571466 49.2980084 28.7571466 32.8654046"></polygon>
+                <polygon id="Fill-3" fill="url(#linearGradient-3)" opacity="0.3" points="0 49.2980427 14.3786033 57.5143874 14.3786033 41.0817835 0 32.8653532"></polygon>
+                <polygon id="Fill-4" fill="url(#linearGradient-4)" opacity="0.3" points="28.7571809 32.8653789 43.1357841 41.0817236 57.514473 32.8653789 43.1357841 24.6490342"></polygon>
+                <polygon id="Fill-5" fill="url(#linearGradient-5)" opacity="0.3" points="43.1358098 41.0817493 43.1358098 57.5144388 57.5144131 49.2980084 57.5144131 32.8654046"></polygon>
+                <polygon id="Fill-6" fill="url(#linearGradient-3)" opacity="0.3" points="28.7571809 49.2980427 43.1357841 57.5143874 43.1357841 41.0817835 28.7571809 32.8653532"></polygon>
+                <polygon id="Fill-7" fill="url(#linearGradient-6)" opacity="0.3" points="28.7571809 -2.56760773e-05 14.3786632 8.21631905 28.7571809 16.4327494 43.1357841 8.21631905"></polygon>
+                <polygon id="Fill-8" fill="url(#linearGradient-5)" opacity="0.3" points="28.7572065 16.4326895 28.7572065 32.8653789 43.1358098 24.6490342 43.1358098 8.21634473"></polygon>
+                <polygon id="Fill-9" fill="url(#linearGradient-3)" opacity="0.3" points="28.7572065 16.4326895 28.7572065 32.8653789 14.3786033 24.6490342 14.3786033 8.21634473"></polygon>
+                <polygon id="Fill-10" fill="url(#linearGradient-7)" points="43.1358098 24.6490342 28.7572065 32.8653789 14.3786033 24.6490342 28.7572065 16.4326895"></polygon>
+                <polygon id="Fill-11" fill="url(#linearGradient-8)" points="28.7572065 32.8653789 28.7572065 49.2980684 43.1358098 41.0817236 43.1358098 24.6490342"></polygon>
+                <polygon id="Fill-12" fill="url(#linearGradient-9)" points="28.7572065 32.8653789 28.7572065 49.2980684 14.3786033 41.0817236 14.3786033 24.6490342"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

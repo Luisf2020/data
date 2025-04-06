@@ -1,0 +1,17 @@
+{
+  "name": "@databerry/chat-bubble",
+  "version": "1.0.142",
+  "description": "ChatsappAIChat Bubble Widget",
+  "main": "dist/chatbox/legacy.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/"
+  },
+  "author": "Javier Gonzalo Arrayaran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/"
+  },
+  "homepage": "https://github.com/"
+}

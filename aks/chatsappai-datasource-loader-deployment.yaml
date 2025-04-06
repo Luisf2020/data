@@ -1,0 +1,289 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f ../docker/docker-compose.build.yml
+    kompose.version: 1.21.0 (992df58d8)
+  labels:
+    io.kompose.service: chatsappai-datasource-loader
+  name: chatsappai-datasource-loader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: chatsappai-datasource-loader
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f ../docker/docker-compose.build.yml
+        kompose.version: 1.21.0 (992df58d8)
+      labels:
+        io.kompose.service: chatsappai-datasource-loader
+    spec:
+      containers:
+        - name: chatsappai-datasource-loader
+          image: chatsappaicontainer.azurecr.io/docker-chatsappai_datasource_loader
+          imagePullPolicy: Always
+          command:
+            - /bin/sh
+            - -c
+            - 'node apps/dashboard/.next/server/datasource-loader.js'
+          env:
+            - name: ANALYZE
+              valueFrom:
+                configMapKeyRef:
+                  key: ANALYZE
+                  name: env-local
+            - name: APP_AWS_ACCESS_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_AWS_ACCESS_KEY
+                  name: env-local
+            - name: APP_AWS_S3_FORCE_PATH_STYLE
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_AWS_S3_FORCE_PATH_STYLE
+                  name: env-local
+            - name: APP_AWS_SECRET_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_AWS_SECRET_KEY
+                  name: env-local
+            - name: AZURE_OPENAI_API_DEPLOYMENT_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: AZURE_OPENAI_API_DEPLOYMENT_NAME
+                  name: env-local
+            - name: AZURE_OPENAI_API_INSTANCE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: AZURE_OPENAI_API_INSTANCE_NAME
+                  name: env-local
+            - name: AZURE_OPENAI_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: AZURE_OPENAI_API_KEY
+                  name: env-local
+            - name: AZURE_OPENAI_API_VERSION
+              valueFrom:
+                configMapKeyRef:
+                  key: AZURE_OPENAI_API_VERSION
+                  name: env-local
+            - name: BROWSER_API
+              valueFrom:
+                configMapKeyRef:
+                  key: BROWSER_API
+                  name: env-local
+            - name: CHROMIUM_PATH
+              valueFrom:
+                configMapKeyRef:
+                  key: CHROMIUM_PATH
+                  name: env-local
+            - name: CRISP_HOOK_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: CRISP_HOOK_SECRET
+                  name: env-local
+            - name: CRISP_TOKEN_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: CRISP_TOKEN_ID
+                  name: env-local
+            - name: CRISP_TOKEN_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: CRISP_TOKEN_KEY
+                  name: env-local
+            - name: CRISP_WEBSITE_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: CRISP_WEBSITE_ID
+                  name: env-local
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: DATABASE_URL
+                  name: env-local
+            - name: EMAIL_FROM
+              valueFrom:
+                configMapKeyRef:
+                  key: EMAIL_FROM
+                  name: env-local
+            - name: EMAIL_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  key: EMAIL_SERVER
+                  name: env-local
+            - name: GITHUB_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: GITHUB_ID
+                  name: env-local
+            - name: GITHUB_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: GITHUB_SECRET
+                  name: env-local
+            - name: GOOGLE_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: GOOGLE_CLIENT_ID
+                  name: env-local
+            - name: GOOGLE_CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: GOOGLE_CLIENT_SECRET
+                  name: env-local
+            - name: INBOUND_EMAIL_APP_AWS_S3_FORCE_PATH_STYLE
+              valueFrom:
+                configMapKeyRef:
+                  key: INBOUND_EMAIL_APP_AWS_S3_FORCE_PATH_STYLE
+                  name: env-local
+            - name: INBOUND_EMAIL_AWS_ACCESS_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: INBOUND_EMAIL_AWS_ACCESS_KEY
+                  name: env-local
+            - name: INBOUND_EMAIL_AWS_S3_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  key: INBOUND_EMAIL_AWS_S3_ENDPOINT
+                  name: env-local
+            - name: INBOUND_EMAIL_AWS_SECRET_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: INBOUND_EMAIL_AWS_SECRET_KEY
+                  name: env-local
+            - name: INBOUND_EMAIL_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  key: INBOUND_EMAIL_BUCKET
+                  name: env-local
+            - name: INBOUND_EMAIL_DOMAIN
+              valueFrom:
+                configMapKeyRef:
+                  key: INBOUND_EMAIL_DOMAIN
+                  name: env-local
+            - name: JWT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: JWT_SECRET
+                  name: env-local
+            - name: NEXTAUTH_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: NEXTAUTH_SECRET
+                  name: env-local
+            - name: NEXTAUTH_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: NEXTAUTH_URL
+                  name: env-local
+            - name: NEXT_PUBLIC_AWS_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  key: NEXT_PUBLIC_AWS_ENDPOINT
+                  name: env-local
+            - name: NEXT_PUBLIC_CRISP_PLUGIN_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: NEXT_PUBLIC_CRISP_PLUGIN_ID
+                  name: env-local
+            - name: NEXT_PUBLIC_DASHBOARD_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: NEXT_PUBLIC_DASHBOARD_URL
+                  name: env-local
+            - name: NEXT_PUBLIC_S3_BUCKET_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: NEXT_PUBLIC_S3_BUCKET_NAME
+                  name: env-local
+            - name: NEXT_PUBLIC_SLACK_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: NEXT_PUBLIC_SLACK_CLIENT_ID
+                  name: env-local
+            - name: NOTION_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: NOTION_CLIENT_ID
+                  name: env-local
+            - name: NOTION_CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: NOTION_CLIENT_SECRET
+                  name: env-local
+            - name: OPENAI_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: OPENAI_API_KEY
+                  name: env-local
+            - name: QDRANT_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: QDRANT_API_KEY
+                  name: env-local
+            - name: QDRANT_API_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: QDRANT_API_URL
+                  name: env-local
+            - name: REDIS_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_URL
+                  name: env-local
+            - name: SLACK_CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: SLACK_CLIENT_SECRET
+                  name: env-local
+            - name: SLACK_SIGNING_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: SLACK_SIGNING_SECRET
+                  name: env-local
+            - name: SLACK_VERIFICATION_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  key: SLACK_VERIFICATION_TOKEN
+                  name: env-local
+          volumeMounts:
+            - name: datasource-loader-storage
+              mountPath: /mnt/datasource
+      volumes:
+        - name: datasource-loader-storage
+          persistentVolumeClaim:
+            claimName: datasource-loader-pvc
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: datasource-loader-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  azureDisk:
+    kind: Managed
+    diskName: datasource-loader-disk
+    diskURI: /subscriptions/ca25ae4e-a09a-4c12-817a-1fef6cdf63c3/resourceGroups/chatsappaidata/providers/Microsoft.Compute/disks/datasource-loader-disk
+    cachingMode: None
+    fsType: ext4
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: datasource-loader-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: manual
+  resources:
+    requests:
+      storage: 5Gi

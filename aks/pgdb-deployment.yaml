@@ -1,0 +1,114 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: azuredisk-premium-retain
+provisioner: kubernetes.io/azure-disk
+reclaimPolicy: Retain # Retain or Delete
+volumeBindingMode: WaitForFirstConsumer # WaitForFirstConsumer or Immediate
+allowVolumeExpansion: true # true o false
+parameters:
+  storageaccounttype: Premium_LRS # Premium o Standard
+  kind: Managed
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: azure-managed-disk-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce # ReadWriteOnce, ReadOnlyMany or ReadWriteMany
+  storageClassName: azuredisk-premium-retain
+  resources:
+    requests:
+      storage: 4Gi
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: databerry
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: password
+  PGDATA: /var/lib/postgresql/data/pgdata
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+spec:
+  serviceName: postgres
+  selector:
+    matchLabels:
+      app: postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+          resources:
+            requests:
+              memory: '2Gi'
+              cpu: '500m'
+            limits:
+              memory: '4Gi'
+              cpu: '1000m'
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+              subPath: pgdata
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-data
+      spec:
+        accessModes: ['ReadWriteOnce']
+        storageClassName: azuredisk-premium-retain
+        resources:
+          requests:
+            storage: 4Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  type: LoadBalancer
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      name: postgres
+      port: 5432
+      targetPort: 5432
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: postgres-hpa
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: postgres
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80

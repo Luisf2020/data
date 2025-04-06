@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9a923569-0f8d-4454-bea0-b88d07ad0c9e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/pages/api/agents/query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/pages/api/agents/query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/pages/api/approvals/[id]/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/pages/api/approvals/[id]/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/pages/api/tools/web-page-summary/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/pages/api/tools/web-page-summary/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/pages/api/tools/youtube-summary/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/pages/api/tools/youtube-summary/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/lib/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/lib/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/lib/blablaform/blablaform.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/lib/blablaform/blablaform.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/lib/chat-model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/lib/chat-model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/lib/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/lib/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/lib/summarize.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/lib/summarize.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2kvbuIvnM83Qa7pjmXIYdU7EZ8w" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenDatabaseViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "CHV2-portkey",
+    "last_opened_file_path": "/home/admnistrador"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+</project>
