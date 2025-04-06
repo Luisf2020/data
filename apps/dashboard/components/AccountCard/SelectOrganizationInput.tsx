@@ -104,7 +104,8 @@ function SelectOrganizationInput({}: Props) {
               <RenderOrgOption
                 rootSxProps={{ maxWidth: '250px' }}
                 name={org.name}
-                plan={org.subscriptions?.[0]?.plan}
+              plan={org.subscriptions?.[0]?.plan ?? undefined}
+
                 avatarUrl={
                   org.iconUrl ? `${org.iconUrl}?timestamp=${Date.now()}` : ''
                 }
